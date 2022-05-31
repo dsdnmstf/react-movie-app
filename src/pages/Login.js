@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { signUpWithGoogle } from "../auth/firebase";
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
+  const navigate = useNavigate();
+  const handleGoogleSignIn = () => {
+    signUpWithGoogle();
+    navigate("/");
+  };
   return (
     <div className="d-flex justify-content-center">
       <div className="form-image">
@@ -41,7 +47,11 @@ const Login = () => {
             Login
           </Button>
         </form>
-        <Button variant="primary" className="form-control">
+        <Button
+          variant="primary"
+          className="form-control"
+          onClick={handleGoogleSignIn}
+        >
           Continue with Google
         </Button>
       </div>

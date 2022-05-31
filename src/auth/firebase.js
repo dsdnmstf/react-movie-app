@@ -1,6 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD04TMhtOHKGVZGiz0Ep8ILGPF84-3A3PQ",
@@ -25,4 +33,31 @@ export const userStateChecker = (setCurrentUser) => {
       setCurrentUser(false);
     }
   });
+};
+// !Signup With Google Provider
+export const signUpWithGoogle = () => {
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: "select_account" });
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+// !Logout
+export const logOut = () => {
+  signOut(auth);
+};
+
+// !Creating New User
+export const createUser = async (email, password, displayName) => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(auth.currentUser, { displayName: displayName });
+  } catch (error) {
+    console.log(error);
+  }
 };

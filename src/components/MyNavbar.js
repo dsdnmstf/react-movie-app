@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { logOut } from "../auth/firebase";
 
 const MyNavbar = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const MyNavbar = () => {
                   variant="outline-light"
                   className="ms-2"
                   onClick={() => {
+                    logOut();
                     navigate("/");
                   }}
                 >
