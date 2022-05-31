@@ -1,9 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const MyNavbar = () => {
   const navigate = useNavigate();
-  const currentUser = true;
+  const { currentUser } = useContext(AuthContext);
   return (
     <Navbar className="navbar" variant="dark" expand="sm">
       <Container fluid>
