@@ -17,6 +17,7 @@ const MyNavbar = () => {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="ms-auto my-2" navbarScroll>
             <div className="buttons align-items-center">
+              {console.log(currentUser)}
               {currentUser ? (
                 <h5 className="mb-0 text-light text-capitalize">
                   {currentUser.displayName}

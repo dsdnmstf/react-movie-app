@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { signUpWithGoogle } from "../auth/firebase";
+import { signIn, signUpWithGoogle } from "../auth/firebase";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
   const handleGoogleSignIn = () => {
     signUpWithGoogle();
     navigate("/");
+  };
+
+  const handleLogin = () => {
+    signIn(email, password);
+    currentUser
+      ? navigate("/")
+      : alert("Login is failed. Please check your data!");
   };
   return (
     <div className="d-flex justify-content-center">
@@ -43,7 +52,11 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Button variant="primary" className="form-control">
+          <Button
+            variant="primary"
+            className="form-control"
+            onClick={handleLogin}
+          >
             Login
           </Button>
         </form>
