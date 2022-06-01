@@ -18,7 +18,7 @@ const MovieDetail = () => {
         setMovieDetail(res.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [movieDetailURL]);
   return (
     <div>
       <div className="container py-5">
