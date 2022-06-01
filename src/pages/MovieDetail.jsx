@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 const MovieDetail = () => {
   const [movieDetail, setMovieDetail] = useState();
   const { id } = useParams();
-  const API_KEY = "d6278b3dc3e6f8f8376a89851c3f8c8f";
+  const API_KEY = process.env.API_API_KEY;
   const movieDetailURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
   const baseImageUrl = "https://image.tmdb.org/t/p/w300";
 
