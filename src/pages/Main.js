@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 import { AuthContext } from "../context/AuthContext";
 
-const API_KEY = process.env.API_API_KEY;
+// const API_KEY = process.env.API_API_KEY;
+const API_KEY = process.env.REACT_APP_API_KEY;
 const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
@@ -22,6 +23,7 @@ const Main = () => {
   };
 
   useEffect(() => {
+    console.log(process.env);
     getMovies(FEATURED_API);
   }, []);
 

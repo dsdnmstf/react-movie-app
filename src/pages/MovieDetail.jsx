@@ -5,14 +5,18 @@ import { Link, useParams } from "react-router-dom";
 const MovieDetail = () => {
   const [movieDetail, setMovieDetail] = useState();
   const { id } = useParams();
-  const API_KEY = process.env.API_API_KEY;
+  const API_KEY = process.env.REACT_APP_API_KEY;
   const movieDetailURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
+  // https://api.themoviedb.org/3/movie/343611?api_key={api_key}&append_to_response=videos
   const baseImageUrl = "https://image.tmdb.org/t/p/w300";
 
   useEffect(() => {
     axios
       .get(movieDetailURL)
-      .then((res) => setMovieDetail(res.data))
+      .then((res) => {
+        console.log(res);
+        setMovieDetail(res.data);
+      })
       .catch((error) => console.log(error));
   }, []);
   return (
