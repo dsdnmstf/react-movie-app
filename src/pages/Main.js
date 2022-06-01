@@ -35,7 +35,7 @@ const Main = () => {
       alert("Please sign in");
       navigate("/login");
     } else {
-      alert("Please enter a your moviename");
+      alert("Please enter a your moviename!");
     }
   };
   return (
