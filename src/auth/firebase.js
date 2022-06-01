@@ -8,6 +8,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   updateProfile,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -57,6 +58,15 @@ export const createUser = async (email, password, displayName) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(auth.currentUser, { displayName: displayName });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// !Sign In With Email And Password
+export const signIn = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
     console.log(error);
   }
