@@ -12,13 +12,13 @@ const Login = () => {
   const { currentUser } = useContext(AuthContext);
   useEffect(() => {
     state && alert("Please sign in!");
-  }, []);
+  }, [state]);
   const handleGoogleSignIn = () => {
     signUpWithGoogle();
   };
   useEffect(() => {
     currentUser && navigate("/");
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   const handleLogin = () => {
     signIn(email, password, navigate);

@@ -4,8 +4,6 @@ import { AuthContext } from "../context/AuthContext";
 
 const PrivateRouter = () => {
   const { currentUser } = useContext(AuthContext);
-  const isLogin = true;
-
   return currentUser ? (
     <Outlet />
   ) : (
