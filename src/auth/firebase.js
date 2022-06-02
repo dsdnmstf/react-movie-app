@@ -10,6 +10,7 @@ import {
   updateProfile,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { Navigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -63,9 +64,10 @@ export const createUser = async (email, password, displayName) => {
 };
 
 // !Sign In With Email And Password
-export const signIn = async (email, password) => {
+export const signIn = async (email, password, navigate) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    navigate("/");
   } catch (error) {
     console.log(error);
   }

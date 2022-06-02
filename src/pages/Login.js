@@ -1,24 +1,27 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { signIn, signUpWithGoogle } from "../auth/firebase";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
+  const { state } = useLocation();
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const { currentUser } = useContext(AuthContext);
+  useEffect(() => {
+    state && alert("Please sign in!");
+  }, []);
   const handleGoogleSignIn = () => {
     signUpWithGoogle();
-    navigate("/");
   };
+  useEffect(() => {
+    currentUser && navigate("/");
+  }, [currentUser]);
 
   const handleLogin = () => {
-    signIn(email, password);
-    currentUser
-      ? navigate("/")
-      : alert("Login is failed. Please check your data!");
+    signIn(email, password, navigate);
   };
   return (
     <div className="d-flex justify-content-center">
